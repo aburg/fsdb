@@ -1,3 +1,3 @@
 #!/bin/bash
 
-go install
+go install -ldflags="-s -w"
