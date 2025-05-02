@@ -6,7 +6,9 @@ This is wholly unsafe for anything. Do not use it. :-D
 
 ## Installation
 
-TODO
+```[bash]
+go install
+```
 
 ## Usage
 
