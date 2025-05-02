@@ -37,6 +37,13 @@ fsdb is
 fsdb is customer.node
 ```
 
+Or:
+
+```[bash]
+fsdb type customer.code
+fsdb id customer.code
+```
+
 ### level 2
 
 This is what you want to use most of the time.
