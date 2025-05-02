@@ -14,6 +14,54 @@ go install
 
 TODO
 
+## What? How?
+
+### Pools
+
+- any directory can be made to be a pool that holds nodes of a specified (pool-)kind
+- this is notified by a file ".<kind>.pool"
+  - this will hold a uuid
+
+Commands:
+
+```[bash]
+fsdb pool init <kind...> # make current directory a pool of given kind
+```
+
+### Nodes
+
+- any directory can be made to be a node of a specified (node-)kind
+- this is notified by a file ".<kind>.node"
+  - this will hold a uuid
+
+Commands:
+
+```[bash]
+fsdb node init <kind...> # make current directory a node of given kind
+```
+
+### Data
+
+- any directory can hold data (each datum consisting of a kind and a value)
+- file ".<kind>.datum"
+  - this will contain the value for the datum
+
+Commands:
+
+```[bash]
+fsdb data set <kind> <value>
+fsdb data get <kind>
+fsdb data remove <kind>
+```
+
+### Spawning
+
+Spawning is the process of creating a node in a pool.
+
+### Writing
+
+Writing is the process of putting data onto a node.
+
 ## Commands
 
 ### level 0
@@ -47,3 +95,10 @@ fsdb depool project
 # if this is a multipool you have to specify the kind
 fsdb spawn create --kind project "Project 1" "Project 2"
 ```
+
+## TODO
+
+- implement subcommands
+- clean up/refactor (pool, node, data)
+- create node commands (node id, node deid, node list)
+- rework this with subcommands (pool list, pool create)
