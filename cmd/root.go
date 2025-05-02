@@ -35,7 +35,7 @@ var cfgFile string
 var rootCmd = &cobra.Command{
 	Version: "v0.0.1",
 	Use:   "fsdb",
-	Short: "A brief description of your application",
+	Short: "A database that lives in your plaintext files",
 	Long: `A longer description that spans multiple lines and likely contains
 examples and usage of using your application. For example:
 
