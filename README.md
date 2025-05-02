@@ -4,7 +4,15 @@ A file system database.
 
 This is wholly unsafe for anything. Do not use it. :-D
 
-## commands
+## Installation
+
+TODO
+
+## Usage
+
+TODO
+
+## Commands
 
 ### level 0
 
