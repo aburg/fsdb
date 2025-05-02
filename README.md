@@ -31,17 +31,8 @@ fsdb unset token
 This is the stuff working with uuids.
 
 ```[bash]
-fsdb make customer.node
-fsdb unmake customer.node
-fsdb is
-fsdb is customer.node
-```
-
-Or:
-
-```[bash]
-fsdb type customer.code
-fsdb id customer.code
+fsdb id customer.node
+fsdb deid customer.node
 ```
 
 ### level 2
