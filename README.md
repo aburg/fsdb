@@ -40,8 +40,9 @@ fsdb deid customer.node
 This is what you want to use most of the time.
 
 ```[bash]
-fsdb pool init project
+fsdb pool project
 fsdb spawn "Project 1" "Project 2"
+fsdb depool project
 
 # if this is a multipool you have to specify the kind
 fsdb spawn create --kind project "Project 1" "Project 2"

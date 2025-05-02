@@ -21,20 +21,8 @@ THE SOFTWARE.
 */
 package util
 
-import (
-	"github.com/google/uuid"
-)
-
-func makeUuid() string {
-	return uuid.New().String()
-}
-
-func Identify(kind string) (string, error) {
-	assertValidKind(kind)
-
-	uuid := makeUuid()
-
-	err := Set(kind, uuid)
+func Pool(kind string) (string, error) {
+	uuid, err := Identify(kind + ".pool")
 	if err != nil {
 		return "", err
 	} else {
@@ -42,8 +30,6 @@ func Identify(kind string) (string, error) {
 	}
 }
 
-func Deidentify(kind string) error {
-	assertValidKind(kind)
-
-	return Unset(kind)
+func Depool(kind string) error {
+	return Deidentify(kind + ".pool")
 }

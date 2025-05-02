@@ -29,11 +29,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// deidCmd represents the deid command
-var deidCmd = &cobra.Command{
-	Use:   "deid <kind...>",
+// depoolCmd represents the depool command
+var depoolCmd = &cobra.Command{
+	Use:   "depool",
 	Args:  cobra.MinimumNArgs(1),
-	Short: "No longer identify the working directory as the given kind(s)",
+	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
@@ -42,27 +42,27 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		for _, kind := range args {
-			err := util.Deidentify(kind)
+			err := util.Depool(kind)
 			if err != nil {
-				fmt.Println("could not deidentify this as a", kind)
+				fmt.Println("could not depool this as a", kind)
 				os.Exit(1)
 			} else {
-				fmt.Println("this is no longer a", kind)
+				fmt.Println("this is no longer a pool of", kind)
 			}
 		}
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(deidCmd)
+	rootCmd.AddCommand(depoolCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// deidCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// depoolCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// deidCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// depoolCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
