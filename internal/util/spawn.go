@@ -21,19 +21,34 @@ THE SOFTWARE.
 */
 package util
 
-func Pool(kind string) (string, error) {
-	uuid, err := Identify(kind + ".pool")
+import (
+	"fmt"
+	"os"
+	"regexp"
+)
+
+func Spawn(kind string, name string) (string, error) {
+	assertValidSpawnName(name)
+
+	err := os.Mkdir(name, 0755)
 	if err != nil {
-		return "", err
-	} else {
-		return uuid, nil
+		fmt.Println("Could not create spawn folder")
+		os.Exit(1)
 	}
+	os.Chdir(name)
+	uuid, err := Identify(kind)
+	os.Chdir("..")
+	return uuid, err
 }
 
-func Depool(kind string) error {
-	return Deidentify(kind + ".pool")
-}
-
-func Is(kind string) bool {
-	return false
+func assertValidSpawnName(name string) {
+	matched, err := regexp.MatchString("^[^\\.]\\w+$", name)
+	if err != nil {
+		fmt.Println("Could not check for valid spawn name")
+		os.Exit(1)
+	}
+	if !matched {
+		fmt.Println("Invalid name:", name)
+		os.Exit(1)
+	}
 }
