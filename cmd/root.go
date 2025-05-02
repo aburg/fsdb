@@ -23,6 +23,7 @@ package cmd
 
 import (
 	"fmt"
+	"fsdb/cmd/node"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -68,6 +69,9 @@ func init() {
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
+	// Adding subcommands from other
+	rootCmd.AddCommand(node.NodeCmd)
 }
 
 // initConfig reads in config file and ENV variables if set.
