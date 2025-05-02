@@ -23,14 +23,17 @@ package cmd
 
 import (
 	"fmt"
+	"fsdb/internal/util"
+	"os"
 
 	"github.com/spf13/cobra"
 )
 
 // unsetCmd represents the unset command
 var unsetCmd = &cobra.Command{
-	Use:   "unset",
-	Short: "Removes a value from the working directory",
+	Use:   "unset <key>",
+	Args:  cobra.ExactArgs(1),
+	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
@@ -38,7 +41,13 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("unset called")
+		key := args[0]
+
+		err := util.Unset(key)
+		if err != nil {
+			fmt.Println("Error: ", err)
+			os.Exit(1)
+		}
 	},
 }
 

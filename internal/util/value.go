@@ -22,7 +22,9 @@ THE SOFTWARE.
 package util
 
 import (
+	"fmt"
 	"os"
+	"regexp"
 )
 
 func Set(key string, value string) error {
@@ -39,9 +41,26 @@ func Get(key string) (string, error) {
 	return string(data), err
 }
 
-func Unset(key string) {
+func Unset(key string) error {
+	keyfile := keyfile(key)
+	return os.Remove(keyfile)
 }
 
 func keyfile(key string) string {
+	match, err := regexp.MatchString("^\\w+(\\.\\w+)*$", key)
+	fail(err)
+
+	if !match {
+		fmt.Println("That is not a valid key:", key)
+		os.Exit(1)
+	}
+
 	return "." + key
+}
+
+func fail(err error) {
+	if err != nil {
+		fmt.Println("Error: ", err)
+		os.Exit(1)
+	}
 }
