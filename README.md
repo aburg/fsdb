@@ -2,6 +2,8 @@
 
 A file system database.
 
+This is wholly unsafe for anything. Do not use it. :-D
+
 ## commands
 
 ### level 0
