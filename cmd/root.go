@@ -33,7 +33,7 @@ var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Version: "v0.0.1",
+	Version: "v0.0.2",
 	Use:     "fsdb",
 	Short:   "A database that lives in your plaintext files",
 	Long: `A longer description that spans multiple lines and likely contains
