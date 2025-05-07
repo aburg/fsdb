@@ -19,52 +19,32 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package cmd
+package data
 
 import (
-	"fmt"
-	"fsdb/internal/util"
-	"os"
+	"fsdb/internal/util/data"
 
 	"github.com/spf13/cobra"
 )
 
-// spawnCmd represents the spawn command
-var spawnCmd = &cobra.Command{
-	Use:   "spawn",
-	Args:  cobra.MinimumNArgs(2),
-	Short: "A brief description of your command",
+var setCommand = &cobra.Command{
+	Use:   "set <key> <value>",
+	Args:  cobra.ExactArgs(2),
+	Short: "Store data on the working directory",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		kind := args[0]
+	RunE: func(cmd *cobra.Command, args []string) error {
+		key := args[0]
+		value := args[1]
 
-		for _, name := range args[1:] {
-			uuid, err := util.Spawn(kind, name)
-			if err != nil {
-				fmt.Println("Error: ", err)
-				os.Exit(1)
-			} else {
-				fmt.Println("Spawn", kind, "("+uuid+")")
-			}
-		}
+		return data.Set(key, value)
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(spawnCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// spawnCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// spawnCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	DataCmd.AddCommand(setCommand)
 }

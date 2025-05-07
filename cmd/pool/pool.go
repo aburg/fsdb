@@ -19,21 +19,18 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package cmd
+package pool
 
 import (
 	"fmt"
-	"fsdb/internal/util"
-	"os"
 
 	"github.com/spf13/cobra"
 )
 
-// getCmd represents the get command
-var getCmd = &cobra.Command{
-	Use:   "get <key>",
-	Args:  cobra.ExactArgs(1),
-	Short: "A brief description of your command",
+var PoolCmd = &cobra.Command{
+	Use:   "pool",
+	Args:  cobra.MinimumNArgs(1),
+	Short: "Manage pools",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
@@ -41,27 +38,6 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		key := args[0]
-
-		value, err := util.Get(key)
-		if err != nil {
-			fmt.Println("Error: ", err)
-			os.Exit(1)
-		}
-		fmt.Println(value)
+		fmt.Println("running pool")
 	},
-}
-
-func init() {
-	rootCmd.AddCommand(getCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// getCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// getCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

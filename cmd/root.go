@@ -23,7 +23,9 @@ package cmd
 
 import (
 	"fmt"
+	"fsdb/cmd/data"
 	"fsdb/cmd/node"
+	"fsdb/cmd/pool"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -34,7 +36,7 @@ var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Version: "v0.0.2",
+	Version: "v0.1.0",
 	Use:     "fsdb",
 	Short:   "A database that lives in your plaintext files",
 	Long: `A longer description that spans multiple lines and likely contains
@@ -70,8 +72,10 @@ func init() {
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 
-	// Adding subcommands from other
+	// Adding subcommands from other packages
 	rootCmd.AddCommand(node.NodeCmd)
+	rootCmd.AddCommand(pool.PoolCmd)
+	rootCmd.AddCommand(data.DataCmd)
 }
 
 // initConfig reads in config file and ENV variables if set.

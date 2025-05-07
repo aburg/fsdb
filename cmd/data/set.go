@@ -19,50 +19,38 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package cmd
+package data
 
 import (
 	"fmt"
-	"fsdb/internal/util"
-	"os"
+	"fsdb/internal/util/data"
 
 	"github.com/spf13/cobra"
 )
 
-// idCmd represents the id command
-var idCmd = &cobra.Command{
-	Use:   "id <kind...>",
-	Args:  cobra.MinimumNArgs(1),
-	Short: "Identify the working directory as the given kind(s)",
+var getCommand = &cobra.Command{
+	Use:   "get <key>",
+	Args:  cobra.ExactArgs(1),
+	Short: "Get data from the working directory",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		for _, kind := range args {
-			uuid, err := util.Identify(kind)
-			if err != nil {
-				fmt.Println("could not identify this as a", kind)
-				os.Exit(1)
-			} else {
-				fmt.Println("this is now a", kind, "("+uuid+")")
-			}
+	RunE: func(cmd *cobra.Command, args []string) error {
+		key := args[0]
+
+		value, err := data.Get(key)
+
+		if err == nil {
+			fmt.Println(value)
 		}
+
+		return err
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(idCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// idCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// idCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	DataCmd.AddCommand(getCommand)
 }

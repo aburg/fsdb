@@ -27,10 +27,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// nodeCmd represents the pool command
 var NodeCmd = &cobra.Command{
 	Use:   "node",
-	Short: "A brief description of your command",
+	Args:  cobra.MinimumNArgs(1),
+	Short: "Manage nodes",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
