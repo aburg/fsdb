@@ -108,3 +108,4 @@ fsdb spawn create --kind project "Project 1" "Project 2"
 - clean up/refactor (pool, node, data)
 - create node commands (node id, node deid, node list)
 - rework this with subcommands (pool list, pool create)
+- unique index eg.? i want the project token to be unique... should we use uuids? v5 on pool?
