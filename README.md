@@ -52,6 +52,11 @@ Commands:
 fsdb data set <kind> <value>
 fsdb data get <kind>
 fsdb data remove <kind>
+```
+
+Upcoming commands:
+
+```[bash]
 fsdb data list
 ```
 
