@@ -52,6 +52,7 @@ Commands:
 fsdb data set <kind> <value>
 fsdb data get <kind>
 fsdb data remove <kind>
+fsdb data list
 ```
 
 ### Spawning
